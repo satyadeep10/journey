@@ -51,16 +51,16 @@ const ChildhoodChapterIntro = () => {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 1.1 }}
-      className="min-h-screen flex items-center justify-center p-6 relative z-10"
+      className="min-h-screen flex items-center justify-center p-4 md:p-6 relative z-10"
     >
       {/* Back Button */}
       <motion.button
         whileHover={{ x: -5 }}
         onClick={() => navigate('/')}
-        className="fixed top-8 left-8 z-50 flex items-center gap-2 text-stone-400 font-bold hover:text-[#FF6B6B] transition-colors"
+        className="fixed top-6 left-6 md:top-8 md:left-8 z-50 flex items-center gap-2 text-stone-400 font-bold hover:text-[#FF6B6B] transition-colors"
       >
-        <ArrowRight className="rotate-180 w-6 h-6" />
-        Back
+        <ArrowRight className="rotate-180 w-5 h-5 md:w-6 md:h-6" />
+        <span className="text-sm md:text-base">Back</span>
       </motion.button>
 
       <motion.div
@@ -70,19 +70,19 @@ const ChildhoodChapterIntro = () => {
         className="cursor-pointer group relative max-w-md w-full"
       >
         {/* Decorative Elements around card */}
-        <div className="absolute -top-12 -left-12 text-6xl animate-bounce">🎈</div>
-        <div className="absolute -bottom-12 -right-12 text-6xl animate-pulse">🍭</div>
+        <div className="absolute -top-8 -left-8 md:-top-12 md:-left-12 text-4xl md:text-6xl animate-bounce">🎈</div>
+        <div className="absolute -bottom-8 -right-8 md:-bottom-12 md:-right-12 text-4xl md:text-6xl animate-pulse">🍭</div>
         
-        <div className="bg-white p-12 rounded-[3rem] shadow-[20px_20px_0px_#FFADAD] border-8 border-white text-center space-y-8">
-          <div className="w-32 h-32 bg-[#FFADAD] rounded-full mx-auto flex items-center justify-center text-white shadow-inner group-hover:rotate-12 transition-transform duration-500">
-            <Baby size={64} />
+        <div className="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-[10px_10px_0px_#FFADAD] md:shadow-[20px_20px_0px_#FFADAD] border-4 md:border-8 border-white text-center space-y-6 md:space-y-8">
+          <div className="w-24 h-24 md:w-32 md:h-32 bg-[#FFADAD] rounded-full mx-auto flex items-center justify-center text-white shadow-inner group-hover:rotate-12 transition-transform duration-500">
+            <Baby className="w-12 h-12 md:w-16 md:h-16" />
           </div>
           
-          <div className="space-y-4">
-            <h3 className="text-stone-400 font-black tracking-[0.3em] uppercase text-sm">Chapter 1</h3>
-            <h2 className="text-5xl font-['Comic_Sans_MS',_cursive] font-black text-[#FF6B6B]">Childhood</h2>
-            <p className="text-stone-500 text-lg font-medium leading-relaxed">
-              Click to travel back in time to where our story first blossomed...
+          <div className="space-y-2 md:space-y-4">
+            <h3 className="text-stone-400 font-black tracking-[0.2em] md:tracking-[0.3em] uppercase text-xs md:text-sm">Chapter 1</h3>
+            <h2 className="text-3xl md:text-5xl font-['Comic_Sans_MS',_cursive] font-black text-[#FF6B6B]">Childhood</h2>
+            <p className="text-stone-500 text-base md:text-lg font-medium leading-relaxed">
+              Click to travel back in time...
             </p>
           </div>
 
@@ -116,10 +116,10 @@ const ChildhoodChapter = () => {
       <motion.button
         whileHover={{ x: -5 }}
         onClick={() => navigate('/chapter1-intro')}
-        className="fixed top-8 left-8 z-50 flex items-center gap-2 text-stone-400 font-bold hover:text-[#FF6B6B] transition-colors font-sans"
+        className="fixed top-6 left-6 md:top-8 md:left-8 z-50 flex items-center gap-2 text-stone-400 font-bold hover:text-[#FF6B6B] transition-colors font-sans"
       >
-        <ArrowRight className="rotate-180 w-6 h-6" />
-        Back
+        <ArrowRight className="rotate-180 w-5 h-5 md:w-6 md:h-6" />
+        <span className="text-sm md:text-base">Back</span>
       </motion.button>
       {/* Playful Background Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -318,10 +318,10 @@ const ReconnectionChapter = () => {
       <motion.button
         whileHover={{ x: -5 }}
         onClick={() => navigate('/chapter1')}
-        className="fixed top-8 left-8 z-50 flex items-center gap-2 text-brand-400 font-bold hover:text-brand-900 transition-colors"
+        className="fixed top-6 left-6 md:top-8 md:left-8 z-50 flex items-center gap-2 text-brand-400 font-bold hover:text-brand-900 transition-colors"
       >
-        <ArrowRight className="rotate-180 w-6 h-6" />
-        Back
+        <ArrowRight className="rotate-180 w-5 h-5 md:w-6 md:h-6" />
+        <span className="text-sm md:text-base">Back</span>
       </motion.button>
 
       <div className="absolute inset-0 opacity-10">
@@ -494,10 +494,10 @@ const DistanceChapter = () => {
       <motion.button
         whileHover={{ x: -5 }}
         onClick={() => navigate('/chapter2')}
-        className="fixed top-8 left-8 z-50 flex items-center gap-2 text-slate-400 font-bold hover:text-slate-600 transition-colors font-sans"
+        className="fixed top-6 left-6 md:top-8 md:left-8 z-50 flex items-center gap-2 text-slate-400 font-bold hover:text-slate-600 transition-colors font-sans"
       >
-        <ArrowRight className="rotate-180 w-6 h-6" />
-        Back
+        <ArrowRight className="rotate-180 w-5 h-5 md:w-6 md:h-6" />
+        <span className="text-sm md:text-base">Back</span>
       </motion.button>
 
       <div className="relative z-10 w-full max-w-5xl flex flex-col items-center">
@@ -632,10 +632,10 @@ const ReunionChapter = () => {
       <motion.button
         whileHover={{ x: -5 }}
         onClick={() => navigate('/chapter3')}
-        className="fixed top-8 left-8 z-50 flex items-center gap-2 text-stone-400 font-bold hover:text-rose-600 transition-colors font-sans"
+        className="fixed top-6 left-6 md:top-8 md:left-8 z-50 flex items-center gap-2 text-stone-400 font-bold hover:text-rose-600 transition-colors font-sans"
       >
-        <ArrowRight className="rotate-180 w-6 h-6" />
-        Back
+        <ArrowRight className="rotate-180 w-5 h-5 md:w-6 md:h-6" />
+        <span className="text-sm md:text-base">Back</span>
       </motion.button>
 
       <div className="relative z-10 w-full max-w-7xl flex flex-col items-center py-12">
@@ -674,7 +674,7 @@ const ReunionChapter = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1 }}
           onAnimationComplete={() => setTimeout(() => setShowNext(true), 2000)}
-          className="w-full max-w-3xl bg-rose-950 text-white p-10 rounded-[3rem] shadow-2xl relative overflow-hidden"
+          className="w-full max-w-3xl bg-rose-950 text-white p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] shadow-2xl relative overflow-hidden"
         >
           {/* Subtle cracks overlay */}
           <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -802,10 +802,10 @@ const GodsPlanChapter = () => {
       <motion.button
         whileHover={{ x: -5 }}
         onClick={() => navigate('/chapter4')}
-        className="fixed top-8 left-8 z-50 flex items-center gap-2 text-stone-400 font-bold hover:text-rose-600 transition-colors font-sans"
+        className="fixed top-6 left-6 md:top-8 md:left-8 z-50 flex items-center gap-2 text-stone-400 font-bold hover:text-rose-600 transition-colors font-sans"
       >
-        <ArrowRight className="rotate-180 w-6 h-6" />
-        Back
+        <ArrowRight className="rotate-180 w-5 h-5 md:w-6 md:h-6" />
+        <span className="text-sm md:text-base">Back</span>
       </motion.button>
 
       <div className="max-w-6xl mx-auto flex flex-col items-center">
@@ -814,10 +814,10 @@ const GodsPlanChapter = () => {
           animate={{ y: 0, opacity: 1 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-serif font-bold text-rose-900 mb-4">
+          <h2 className="text-3xl md:text-6xl font-serif font-bold text-rose-900 mb-4">
             Chapter 5: God's Wish & Our Third Reunion
           </h2>
-          <p className="text-stone-500 italic text-lg max-w-2xl mx-auto">
+          <p className="text-stone-500 italic text-base md:text-lg max-w-2xl mx-auto px-4">
             "Destiny has a way of bringing back what's meant to stay. This is how we found our way home."
           </p>
         </motion.div>
@@ -864,38 +864,38 @@ const GodsPlanChapter = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="mt-32 w-full max-w-4xl bg-rose-900 rounded-[3rem] p-12 text-white relative overflow-hidden shadow-2xl"
+          className="mt-20 md:mt-32 w-full max-w-4xl bg-rose-900 rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 text-white relative overflow-hidden shadow-2xl"
         >
           <div className="relative z-10">
-            <h3 className="text-3xl font-serif font-bold text-rose-100 mb-8 text-center uppercase tracking-widest">The Journey to Delhi</h3>
+            <h3 className="text-xl md:text-3xl font-serif font-bold text-rose-100 mb-8 text-center uppercase tracking-widest">The Journey to Delhi</h3>
             
-            <div className="relative h-64 flex flex-col justify-center items-center">
+            <div className="relative h-48 md:h-64 flex flex-col justify-center items-center">
               {/* Road */}
-              <div className="absolute w-full h-2 bg-rose-800/50 rounded-full bottom-20">
+              <div className="absolute w-full h-1.5 md:h-2 bg-rose-800/50 rounded-full bottom-16 md:bottom-20">
                 <motion.div 
                   animate={{ x: [-20, 20, -20] }}
                   transition={{ repeat: Infinity, duration: 2 }}
-                  className="flex gap-8 w-full justify-around opacity-20"
+                  className="flex gap-4 md:gap-8 w-full justify-around opacity-20"
                 >
-                  {[...Array(10)].map((_, i) => <div key={i} className="w-8 h-1 bg-white rounded-full" />)}
+                  {[...Array(6)].map((_, i) => <div key={i} className="w-6 md:w-8 h-1 bg-white rounded-full" />)}
                 </motion.div>
               </div>
 
               {/* Bus Animation */}
               <motion.div
                 animate={{ 
-                  x: [-200, 200],
-                  y: [0, -5, 0]
+                  x: [-100, 100],
+                  y: [0, -3, 0]
                 }}
                 transition={{ 
-                  x: { repeat: Infinity, duration: 8, ease: "linear" },
+                  x: { repeat: Infinity, duration: 6, ease: "linear" },
                   y: { repeat: Infinity, duration: 0.5 }
                 }}
-                className="absolute flex flex-col items-center gap-2"
+                className="absolute flex flex-col items-center gap-1 md:gap-2"
               >
-                <div className="bg-white p-4 rounded-2xl text-rose-900 shadow-xl relative">
-                  <Bus size={48} />
-                  <div className="absolute -top-12 left-1/2 -translate-x-1/2 bg-rose-50 text-rose-900 text-[10px] font-bold px-3 py-1 rounded-full whitespace-nowrap shadow-lg">
+                <div className="bg-white p-3 md:p-4 rounded-xl md:rounded-2xl text-rose-900 shadow-xl relative">
+                  <Bus className="w-8 h-8 md:w-12 md:h-12" />
+                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-rose-50 text-rose-900 text-[8px] md:text-[10px] font-bold px-2 py-1 rounded-full whitespace-nowrap shadow-lg">
                     She's on her way! 🚌
                   </div>
                 </div>
@@ -939,10 +939,10 @@ const GodsPlanChapter = () => {
           whileInView={{ opacity: 1 }}
           whileHover={{ scale: 1.05 }}
           onClick={() => navigate('/treasure-box')}
-          className="mt-20 group flex items-center gap-4 bg-white text-rose-900 px-12 py-5 rounded-full font-black text-xl shadow-2xl border-4 border-rose-100 transition-all hover:bg-rose-50"
+          className="mt-12 md:mt-20 group flex items-center gap-3 md:gap-4 bg-white text-rose-900 px-8 md:px-12 py-4 md:py-5 rounded-full font-black text-lg md:text-xl shadow-2xl border-4 border-rose-100 transition-all hover:bg-rose-50"
         >
           View The Treasure Box 🎁
-          <ArrowRight className="group-hover:translate-x-2 transition-transform w-6 h-6" />
+          <ArrowRight className="group-hover:translate-x-2 transition-transform w-5 h-5 md:w-6 md:h-6" />
         </motion.button>
       </div>
     </motion.div>
@@ -1016,55 +1016,55 @@ const StoryRecap = () => {
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation Buttons */}
-      <div className="absolute top-1/2 -translate-y-1/2 left-8 z-50">
+        {/* Navigation Buttons */}
+      <div className="absolute bottom-12 md:top-1/2 md:-translate-y-1/2 left-8 z-50">
         <motion.button
-          whileHover={{ x: -10, scale: 1.1 }}
+          whileHover={{ x: -5, scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={prev}
           disabled={index === 0}
-          className={`p-4 rounded-full glass border border-white/20 text-white ${index === 0 ? 'opacity-20 cursor-not-allowed' : 'opacity-100'}`}
+          className={`p-3 md:p-4 rounded-full glass border border-white/20 text-white ${index === 0 ? 'opacity-20 cursor-not-allowed' : 'opacity-100'}`}
         >
-          <ArrowLeft size={32} />
+          <ArrowLeft className="w-6 h-6 md:w-8 md:h-8" />
         </motion.button>
       </div>
 
-      <div className="absolute top-1/2 -translate-y-1/2 right-8 z-50">
+      <div className="absolute bottom-12 md:top-1/2 md:-translate-y-1/2 right-8 z-50">
         <motion.button
-          whileHover={{ x: 10, scale: 1.1 }}
+          whileHover={{ x: 5, scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={next}
-          className="p-4 rounded-full glass border border-white/20 text-white shadow-2xl"
+          className="p-3 md:p-4 rounded-full glass border border-white/20 text-white shadow-2xl"
         >
-          <ArrowRight size={32} />
+          <ArrowRight className="w-6 h-6 md:w-8 md:h-8" />
         </motion.button>
       </div>
 
       {/* Main Content Flow */}
-      <div className="relative z-10 w-full max-w-5xl px-12">
+      <div className="relative z-10 w-full max-w-5xl px-6 md:px-12">
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
-            initial={{ x: 100, opacity: 0 }}
+            initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -100, opacity: 0 }}
+            exit={{ x: -50, opacity: 0 }}
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
-            className="flex flex-col items-center text-center space-y-8"
+            className="flex flex-col items-center text-center space-y-6 md:space-y-8"
           >
             <motion.div
               initial={{ scale: 0.5, rotate: -20 }}
               animate={{ scale: 1, rotate: 0 }}
-              className="w-32 h-32 bg-rose-500/20 backdrop-blur-3xl rounded-full flex items-center justify-center border-4 border-rose-500 shadow-[0_0_50px_rgba(244,63,94,0.3)]"
+              className="w-24 h-24 md:w-32 md:h-32 bg-rose-500/20 backdrop-blur-3xl rounded-full flex items-center justify-center border-4 border-rose-500 shadow-[0_0_50px_rgba(244,63,94,0.3)]"
             >
-              {React.createElement(recapMoments[index].icon, { size: 64, className: "text-white" })}
+              {React.createElement(recapMoments[index].icon, { className: "w-10 h-10 md:w-16 md:h-16 text-white" })}
             </motion.div>
 
-            <div className="space-y-4">
+            <div className="space-y-2 md:space-y-4">
               <motion.span 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="text-rose-400 font-black tracking-[0.5em] uppercase text-sm"
+                className="text-rose-400 font-black tracking-[0.3em] md:tracking-[0.5em] uppercase text-xs md:text-sm"
               >
                 {recapMoments[index].chapter}
               </motion.span>
@@ -1072,7 +1072,7 @@ const StoryRecap = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="text-6xl md:text-8xl font-serif italic text-white"
+                className="text-4xl md:text-8xl font-serif italic text-white"
               >
                 {recapMoments[index].title}
               </motion.h2>
@@ -1080,7 +1080,7 @@ const StoryRecap = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
-                className="text-xl md:text-2xl text-rose-100/70 font-light max-w-3xl leading-relaxed italic"
+                className="text-lg md:text-2xl text-rose-100/70 font-light max-w-3xl leading-relaxed italic px-4"
               >
                 "{recapMoments[index].desc}"
               </motion.p>
@@ -1089,7 +1089,7 @@ const StoryRecap = () => {
         </AnimatePresence>
 
         {/* Progress Bar */}
-        <div className="absolute -bottom-32 left-0 right-0 h-1 bg-white/10 rounded-full overflow-hidden">
+        <div className="absolute -bottom-20 md:-bottom-32 left-6 right-6 h-1 bg-white/10 rounded-full overflow-hidden">
           <motion.div 
             animate={{ width: `${((index + 1) / recapMoments.length) * 100}%` }}
             className="h-full bg-rose-500 shadow-[0_0_15px_rgba(244,63,94,1)]"
@@ -1338,41 +1338,41 @@ const TreasureBoxChapter = () => {
       <motion.button
         whileHover={{ x: -5 }}
         onClick={() => navigate('/chapter5')}
-        className="fixed top-8 left-8 z-50 flex items-center gap-2 text-brand-400 font-bold hover:text-brand-900 transition-colors"
+        className="fixed top-6 left-6 md:top-8 md:left-8 z-50 flex items-center gap-2 text-brand-400 font-bold hover:text-brand-900 transition-colors"
       >
-        <ArrowRight className="rotate-180 w-6 h-6" />
-        Back
+        <ArrowRight className="rotate-180 w-5 h-5 md:w-6 md:h-6" />
+        <span className="text-sm md:text-base">Back</span>
       </motion.button>
 
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 md:mb-16">
           <motion.div
             animate={{ rotate: [0, 10, -10, 0] }}
             transition={{ repeat: Infinity, duration: 5 }}
-            className="inline-block p-4 bg-white rounded-full shadow-xl mb-6"
+            className="inline-block p-3 md:p-4 bg-white rounded-full shadow-xl mb-4 md:mb-6"
           >
-            <Gift size={48} className="text-brand-500" />
+            <Gift className="w-8 h-8 md:w-12 md:h-12 text-brand-500" />
           </motion.div>
-          <h2 className="text-5xl font-serif font-bold text-brand-900 uppercase tracking-tight">The Treasure Box</h2>
-          <p className="text-brand-600 text-lg mt-4 italic font-serif">"Our memories, preserved for eternity."</p>
+          <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-900 uppercase tracking-tight">The Treasure Box</h2>
+          <p className="text-brand-600 text-base md:text-lg mt-2 md:mt-4 italic font-serif">"Our memories, preserved for eternity."</p>
         </div>
 
         {/* New Beauty Gallery Section */}
-        <div className="mb-24">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-12">
-            <div className="text-left">
-              <h3 className="text-3xl font-serif font-bold text-rose-900 flex items-center gap-3">
+        <div className="mb-16 md:mb-24">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8 md:mb-12">
+            <div className="text-center md:text-left">
+              <h3 className="text-2xl md:text-3xl font-serif font-bold text-rose-900 flex items-center justify-center md:justify-start gap-3">
                 <Sparkles className="text-rose-400" />
                 Her Radiant Beauty
               </h3>
-              <p className="text-stone-500 mt-2 italic">A collection of moments where your beauty outshone everything else.</p>
+              <p className="text-stone-500 mt-2 italic text-sm md:text-base">A collection of moments where your beauty outshone everything else.</p>
             </div>
             
             <label className="cursor-pointer group">
               <input type="file" accept="image/*,video/*" className="hidden" onChange={handleFileUpload} />
-              <div className="bg-rose-900 text-white px-8 py-4 rounded-2xl flex items-center gap-3 shadow-xl hover:bg-rose-800 transition-all active:scale-95">
-                <Plus size={24} />
-                <span className="font-bold tracking-wide">Add Memory</span>
+              <div className="bg-rose-900 text-white px-8 py-3 md:py-4 rounded-2xl flex items-center gap-3 shadow-xl hover:bg-rose-800 transition-all active:scale-95">
+                <Plus className="w-5 h-5 md:w-6 md:h-6" />
+                <span className="font-bold tracking-wide text-sm md:text-base">Add Memory</span>
               </div>
             </label>
           </div>
@@ -1440,18 +1440,18 @@ const TreasureBoxChapter = () => {
           ].map((item, i) => (
             <motion.div
               key={i}
-              whileHover={{ y: -10 }}
+              whileHover={{ y: -5 }}
               onClick={() => (item.id === 'letters' || item.id === 'songs') && setSelectedCategory(item.id)}
-              className={`p-10 rounded-[2.5rem] ${item.color} shadow-xl border border-white/50 flex flex-col items-center text-center space-y-6 hover:shadow-2xl transition-all cursor-pointer`}
+              className={`p-6 md:p-10 rounded-[2rem] md:rounded-[2.5rem] ${item.color} shadow-xl border border-white/50 flex flex-col items-center text-center space-y-4 md:space-y-6 hover:shadow-2xl transition-all cursor-pointer`}
             >
-              <div className="p-5 bg-white rounded-3xl text-brand-500 shadow-inner">
-                <item.icon size={40} />
+              <div className="p-4 md:p-5 bg-white rounded-2xl md:rounded-3xl text-brand-500 shadow-inner">
+                {React.createElement(item.icon, { className: "w-8 h-8 md:w-10 md:h-10" })}
               </div>
-              <h3 className="text-2xl font-bold text-brand-900">{item.title}</h3>
-              <p className="text-brand-600 leading-relaxed">{item.desc}</p>
+              <h3 className="text-xl md:text-2xl font-bold text-brand-900">{item.title}</h3>
+              <p className="text-brand-600 leading-relaxed text-sm md:text-base">{item.desc}</p>
               
               {item.images ? (
-                <div className="grid grid-cols-2 gap-2 w-full h-48">
+                <div className="grid grid-cols-2 gap-2 w-full h-32 md:h-48">
                   {item.images.map((src, idx) => (
                     <div key={idx} className="overflow-hidden rounded-xl border-2 border-white shadow-sm">
                       <img src={src} className="w-full h-full object-cover" alt={`Holding hands ${idx + 1}`} />
@@ -1486,25 +1486,25 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2 }}
-          className="mb-6 flex items-center gap-4"
+          className="mb-4 md:mb-6 flex items-center gap-4"
         >
-          <div className="h-[1px] w-12 bg-brand-300"></div>
-          <span className="text-xs font-bold tracking-[0.4em] text-brand-600 uppercase">Our Digital Memoir</span>
-          <div className="h-[1px] w-12 bg-brand-300"></div>
+          <div className="h-[1px] w-8 md:w-12 bg-brand-300"></div>
+          <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] md:tracking-[0.4em] text-brand-600 uppercase">Our Digital Memoir</span>
+          <div className="h-[1px] w-8 md:w-12 bg-brand-300"></div>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.3 }}
-          className="space-y-8"
+          className="space-y-6 md:space-y-8"
         >
-          <h1 className="text-5xl md:text-7xl font-serif italic text-brand-900 leading-tight">
+          <h1 className="text-4xl md:text-7xl font-serif italic text-brand-900 leading-tight">
             A Beautiful <br />
             <span className="text-brand-500 not-italic font-sans font-black tracking-tighter">Love Journey</span>
           </h1>
           
-          <p className="text-lg md:text-xl text-brand-700 font-light leading-relaxed max-w-lg mx-auto italic">
+          <p className="text-base md:text-xl text-brand-700 font-light leading-relaxed max-w-lg mx-auto italic px-4">
             "I hope you will like seeing how our life traversed through every up and down... 
             but through it all, my only wish is to be with you forever."
           </p>
