@@ -3,6 +3,14 @@ import { HashRouter as Router, Routes, Route, useNavigate, useLocation } from 'r
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Music, Mail, Gift, BookOpen, MapPin, ChevronDown, Sparkles, X, School, Baby, ArrowRight, Map, Home, Phone, MessageSquare, Car, Bus, Hotel, Users, Camera, Video, Plus, Upload, Trash2, Wand2, ArrowLeft } from 'lucide-react';
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
+
 const FlyingHearts = () => {
   return (
     <div className="fixed inset-0 pointer-events-none z-[5] overflow-hidden">
@@ -103,7 +111,7 @@ const ChildhoodChapterIntro = () => {
 
 const ChildhoodChapter = () => {
   const navigate = useNavigate();
-  const [showNext, setShowNext] = useState(false);
+  const [showNext, setShowNext] = useState(true);
 
   return (
     <motion.div 
@@ -215,7 +223,6 @@ const ChildhoodChapter = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 1, type: "spring" }}
-            onAnimationComplete={() => setTimeout(() => setShowNext(true), 1000)}
             className="flex flex-col items-center gap-2"
           >
             <div className="flex gap-2">
@@ -305,7 +312,7 @@ const ChildhoodChapter = () => {
 
 const ReconnectionChapter = () => {
   const navigate = useNavigate();
-  const [showNext, setShowNext] = useState(false);
+  const [showNext, setShowNext] = useState(true);
 
   return (
     <motion.div 
@@ -380,7 +387,6 @@ const ReconnectionChapter = () => {
               initial={{ scale: 0.8, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1 }}
-              onAnimationComplete={() => setShowNext(true)}
               className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white bg-white group"
             >
               <div className="grid grid-cols-2 grid-rows-2 h-full gap-1 p-1">
@@ -481,7 +487,7 @@ const ReconnectionChapter = () => {
 
 const DistanceChapter = () => {
   const navigate = useNavigate();
-  const [showNext, setShowNext] = useState(false);
+  const [showNext, setShowNext] = useState(true);
 
   return (
     <motion.div 
@@ -515,7 +521,6 @@ const DistanceChapter = () => {
               initial={{ scale: 0.8, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1 }}
-              onAnimationComplete={() => setTimeout(() => setShowNext(true), 1500)}
               className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl border-4 border-slate-200 bg-slate-100 group"
             >
               <img 
@@ -611,7 +616,7 @@ const DistanceChapter = () => {
 
 const ReunionChapter = () => {
   const navigate = useNavigate();
-  const [showNext, setShowNext] = useState(false);
+  const [showNext, setShowNext] = useState(true);
 
   const moments = [
     { title: "The Birthday Call", desc: "A phone call on your birthday changed everything this time and we again started getting together.", icon: Phone },
@@ -673,7 +678,6 @@ const ReunionChapter = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1 }}
-          onAnimationComplete={() => setTimeout(() => setShowNext(true), 2000)}
           className="w-full max-w-3xl bg-rose-950 text-white p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] shadow-2xl relative overflow-hidden"
         >
           {/* Subtle cracks overlay */}
@@ -1109,18 +1113,369 @@ const StoryRecap = () => {
 
 const TreasureBoxChapter = () => {
   const navigate = useNavigate();
-  const [items, setItems] = useState([
-    { id: 1, type: 'image', url: 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&q=80&w=600', caption: "Your smile is the only light I ever need." },
-    { id: 2, type: 'image', url: 'https://images.unsplash.com/photo-1524492459426-0370428d022b?auto=format&fit=crop&q=80&w=600', caption: "Capturing the grace in your every move." },
-  ]);
+  
+  // Load saved data from localStorage or use defaults
+  const [items, setItems] = useState(() => {
+    const saved = localStorage.getItem('treasure-items');
+    return saved ? JSON.parse(saved) : [
+      { id: 1, type: 'image', url: '/pic1.jpg', caption: "A memory that will last forever." },
+      { id: 2, type: 'image', url: '/pic2.jpg', caption: "The sparkle in your eyes." },
+      { id: 3, type: 'image', url: '/pic3.jpg', caption: "Our favorite place to be." },
+      { id: 4, type: 'image', url: '/pic4.jpg', caption: "A moment of pure happiness." },
+      { id: 5, type: 'image', url: '/pic5.jpg', caption: "Forever in my heart." },
+      { id: 6, type: 'image', url: '/pic6.jpg', caption: "The beauty of us." },
+    ];
+  });
 
-  const [letters, setLetters] = useState([
-    { id: 1, url: "https://images.unsplash.com/photo-1578852612716-854e527abf5e?auto=format&fit=crop&q=80&w=400", caption: "The very first note you ever sent me." }
-  ]);
-  const [songs, setSongs] = useState([
-    { id: 1, title: "Our First Song", link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" }
-  ]);
+  const [letters, setLetters] = useState(() => {
+    const saved = localStorage.getItem('treasure-letters');
+    return saved ? JSON.parse(saved) : [
+      { id: 1, title: "Note by you", content: `I honestly don’t even know where to begin. You know what happens? I spend the entire day thinking about when i’ll get a chance to talk to you…what I’ll say to you, what I’ll ask, what I’ll share…but the moment I actually talk to you or text you, I forget everything. All I want to do is listen to you. I just want to hear about you, know what you’re thinking, what you’re feeling, how was your day..I don’t even feel like talking about myself. Sirf apki hi baat krna chahti hu…
+
+Why do I love you this much?
+
+After everything that happened, why couldn’t I ever remove you from my heart? Why couldn’t I hate you, no matter how hard I tried? I’ve overthought these questions a thousand times, but I still don’t have the answers.
+
+There were so many moments when I told myself I wouldn’t talk to you again, that I would hate you, that I wouldn’t even look at you. But the second I saw you… the moment I heard your voice… I would melt. And somehow, I used to fall in love with you all over again snd again and again.. Every single time. I honestly don’t even know how many times I fell in love with you all over again.
+
+Why?
+
+I knew you were married. I knew you had children. I knew nothing could ever happen between us. I was sure you didn’t love me. And yet, I kept loving you anyway. Why?
+
+And now, when everything feels good… when I’m smiling, happy, talking to you… there’s still this strange fear in my heart. What happens after this?
+
+What does the future hold for us after this? 
+
+Are we going to live like this forever? Hiding our feelings, Living in fear. Longing to see each other. Waiting all day for just one message. How long can this go on?
+
+Will it always be this way?
+
+We’ll never truly be together, will we?
+
+Why is this happening to us?
+
+I know I overthink. I do. Because I’m scared of being happy. I don’t want to let myself feel too happy… because I don’t think I have the strength to survive another heartbreak. I’m tired. I don’t want to lose you again. But I also know we can’t really be together. So what do we do?
+
+There has to be some way out… doesn’t there?
+
+These thoughts were heavy on my heart, so I wanted to let them out. Because when we talk or call, I forget all of this.
+
+And honestly… I love it when you hold my hand. When you touch me. When you hug me. You can’t even imagine what that does to me — it gives me butterflies every single time.
+
+Is there really no way for us to be together?
+
+We spent so many years convincing ourselves that we didn’t love each other. And now, when we both know how deep this love runs, are we going to spend the rest of our lives living in fear?
+
+What am I supposed to do?
+
+Anyway… I’ll sleep now. I just wanted to say what was in my heart. You don’t have to answer every “why.” If there’s something that doesn’t have an answer, just let it be. I understand more than you think. And I promise, I will never see you as the villain in this story 😜😂
+
+And…my love for you… it will always remain same.. 
+
+Good night, my love 🌸✨🌷❤️💖 ` },
+      { id: 2, title: "Full of love", content: `Hii Satyadeep❤️
+
+I know my writing skills could never match yours, not even close. I don’t always do justice to words, and honestly, I’ve never quite figured out a better way to express what I feel.
+
+But one thing I do know is this, ever since I understood what love truly means, I have loved only you.
+
+Even when I watch movies and see a hero loving his wife or girlfriend with everything he has… I don’t see him. I see you. I imagine you in every gesture, every emotion.
+
+You exist in every part of my day , from the moment my eyes open in the morning to the second they close at night… and even beyond that, in my dreams.
+
+I want to see you everywhere.
+
+I want to feel your presence around me.
+
+I want to sit beside you quietly and listen to everything you say.
+
+I want to know what makes you smile… what hurts you… what comforts you… what breaks you.
+
+I want to share your sorrows.
+
+I want God to give you all the happiness written in my destiny.
+
+Seeing you smile makes my entire world lighter.
+
+Hearing your voice feels like peace.
+
+And I can never look at you long enough…
+
+Sometimes I’m afraid that if someone catches me looking at you, they’ll read my heart instantly and this love is something I’ve kept hidden from the world.
+
+I don’t want anything from you.
+
+I don’t expect anything.
+
+I just want to see you… hear you… feel you.
+
+Yes, sometimes I get restless.
+
+I crave you in ways I can’t explain.
+
+There are moments when all I want is to hold you close to my heart and give you every happiness you deserve.
+
+I try to reason with myself every day.
+
+But the moment you’re around, logic surrenders.
+
+One normal glance from you… just a little attention… and I lose my composure without even realizing it.
+
+When I see you, the world fades into the background.
+
+My heart pauses in a place where maybe it shouldn’t stay.
+
+My heart whispers that you could be mine.
+
+But My mind warns me that you’re becoming my habit.
+
+What am I supposed to do?
+
+All I know is that I may never be able to show you how deeply I love you, not in writing, not in words, not even face to face.
+
+But if you ever look closely…
+
+just understand this, 
+
+I am hopelessly, helplessly in love with you.
+
+I love you Satyadeep❤️` },
+      { id: 3, title: "Obvservation by you", content: `Yaar Shalini… pata nahi kaise bolun.
+
+Woh sach mein bahut achha banda hai. Kam bolta hai, apne mein rehta hai, sorted hai. Koi show-off nahi, koi unnecessary drama nahi. Bas simple aur seedha.
+
+
+
+Roz uski choti choti baatein dekh ke aur sun ke aur zyada achha lagne laga hai. Woh hamesha ye dekhta hai ki main comfortable hoon ya nahi. Agar woh chahe toh situation alag ho sakti hai, par woh kabhi line cross nahi karta. Pehle meri comfort dekhta hai. Aaj tak kisi ne mujhe itna consider nahi kiya.
+
+
+
+Usne mera shoelace bandh diya tha… itni normal si baat thi par pata nahi kyun dil ko touch kar gayi. Haath pakda toh bhi ajeeb ya filmy kuch feel nahi hua bas normal, safe, theek sa. Jaise hona chahiye.
+
+
+
+Meri zidd bhi maanta hai. Mujhe samjhata hai. Pamper karta hai bina effort dikhaye. Kaise koi usse pyaar na kare?
+
+
+
+Main pehle sochti thi bas one-sided hai. Uska ek room mein hona hi mere liye kaafi hota tha. Bas ek jhalak mil jaye toh din ban jata tha.
+
+Par ab… jitna usko jaanne lagi hoon, utna hi feelings deep ho rahi hain. Aur ab samajh nahi aa raha kya karun.
+
+` },
+      { id: 4, title: "My Paagalpan", content: `Dear Swati,Its 2:45 am today and i am feeling that what would be the scenario if you would have been with me now
+Would i be playing with you hairs or seeing you sleep in arms or would i be sleeping next to you with thought that i am with my girl who is safe and sound around me
+Repeating but want to write that i never knew your love
+If i would , may be i could have gathered courage to face you irrespective of any relation you got into due to misunderstanding as we consider it today
+Since condition was that i felt helpless that time as i thought i must step back for your happiness . As you stated that you need all happiness for me , i had similar thoughts and i lost my part of heart to someone else considering you were happy without me
+Today my biggest pain is you are not happy and everytime i see you , i start loving you more not because you are emotionally drained out but because i always loved you
+My way , rather i should say our ways fall apart in past but loving you silently was my ritual and it might feel cringe to you but this is again a hard truth of life
+Since now i know you love me , i want to make you mine from head to toe not in other way but every-way i want you to be mine whole heartedly or i should say i want to be yours
+Every time i see you , i see your big black eyes which feels like an ocean filled with emotions and i want to dive into that and see this world with you 
+Every time i see you, i want to smell you and you smell like roses and i want to keep those roses with me always
+Every time i see you , i want to touch you as who would not want to feel his love as touching you is like touching an angel 
+Every time i see you , i want to hear you telling your stories in a rhythm as water falls in a rhythm
+Everything i see you , i want to see you smile like a sunflower smiles while looking at sun
+And last but not the least , i want to see you sleep calmly same as moon showers its calmness in the night with a beautiful shine
+And who does not observe the aura of your presence which is like 1000 flowers blooming in a garden
+You and your name as i always say is a poem for meand i want stitch each word of that poem with you as long as you allow me to be with you
+I don’t want to say much that you be mine but i want to say i am yours , however i will say i give myself to you and you drive me and my life
+In life , ppl do not drive me , may be i speak less but with you i want to be driven by you and speak very much
+I don’t wish to dominate you and guide you 
+My wish is you do that with me as i love to be yours and want my goddess to guide me as i love you supervision
+I really do not know and will be unable to tell why i love you as i have no reason for loving you , i never met you in person all alone but still why i love you i don’t know
+My love for you will be irreversible , irreplaceable and eternal and trust me i am in that much deep love with you where even if you ask me to wash you legs , i will be doing that happily because in that way i will be able to touch the feet’s of my goddess and i have no shame in doing that
+I have no desire to get you physically but my desire is to win your soul as this body will remain here but soul will be with me for births
+How to end this letter i don’t know but i must do that with closing line
+Do not leave me pls again for others
+Do no judge me if you felt anytime i touched you without asking you . What do i do i have craving of you in all the ways like a fish needs water and i will always be doing that with your permission only
+You are free to stop loving me but pls do not ever say you never loved me 
+I cant forget your touch when you hug me atleast give me right to hug you always without second thought
+I will keep loving you forever and ever !!!` },
+      { id: 5, title: "Love", content: `Swatu and today i want to call you jhilmil
+
+
+
+See what kind of madness is this where everyday i want to fine new names for you
+
+Cringe right
+
+Kya karun
+
+I want to be cringe and don’t mind it
+
+As i can’t restrict telling my core feelings to you
+
+Atleast i can do that as may be seeing you meeting you talking to you is not possible
+
+But who can stop me writing for you ?
+
+Remembering every day what you wear is my daily habit 
+
+Remembering everyday how you look is my ritual
+
+Saw you first in hospital in sleeveless in black and then blue tshirt written with slogan as mountain or orange or yellow kurti or black loose tshirt or blue kurti or black tshirt or pink color clothes ( may be fuschia , i am weak in colors )
+
+You nail paint , your peach sleepers surrounded by mine , or you maroor or bronw sleepers in hsptl 
+
+Sab yaad hai mujhe
+
+Kabhi kabhi samjh nahi aata kyu yad karta hu ye sab
+
+No logic behind all this
+
+But then i feel kisi ko itna socho to ye sab kaise na yaad hoga
+
+When you speak , a little curve between you nose and upper lip takes my heart away all the time
+
+When you say suno na or satyadeep
+
+I stop thinking anything
+
+Kyu hota hai ye sab mere sath
+
+
+
+Kaise karu wait 29 ka main
+
+Aaj kyu nhi hai 29
+
+Kal kyu nahi hai
+
+Ye calendar maij sir 8 ya 29 hi kyu nahi hai
+
+
+
+Whyyy
+
+Kaise dekhu apko
+
+I just want to see without blinking my eyes
+
+I want to touch your cheeks all the time
+
+I want to kiss your forehead
+
+
+
+Kaiseee
+
+Kab 
+
+Kahan 
+
+Kyu
+
+
+
+But all ends with just one name Swatiiii` },
+      { id: 6, title: "Forever", content: `Dear cutie betu,
+
+It would be wrong to say that i am not repeating myself
+
+But what i should do , feelings are something on which i can not control
+
+I haven’t seen any practical person like you before but truth is you are practical but emotional as well
+
+Whenever you talk to me and i talk all cringe things i feel do i ever talk like this and reality is i am talking like this which i have not done before
+
+I hardly remember i spoke this much , specially about my useless topics of college days of paper presentation etc as who would listen to that except you
+
+Sometimes,  i feel that why are you doing this for me
+
+And it reminds me of 8 feb 2026 ( ~12:25 pm ist ) when i saw u first , not first as in my life , but  to meet me as first date
+
+You know this is truthfully was our first official date which is imprinted in my heart now
+
+So actually you are the person with whom i never thought i would be able to talk but slowly it happened.
+
+You say why i am scared of you, i try not to
+
+But my scare is not scare as in that way
+
+I am scared of expectations , love , care which i never expected from you in past as my love was not exposed as per you though it was always there however it was uncertain for you
+
+So i think now what will i do of you say satyadeep bus ho gaya , 
+
+Where i will go , would i be again deprived of it
+
+I understand that u have already told about it
+
+But shayad kisi ko jyada pyar karne se yehi hota as ki person will always scare about loosing the person he loves the most
+
+Well, you know i always wanted you to be around me and i wanted to put all my efforts to make you happy in every way whatever i can 
+
+I love noticing you , your expressions like whenever you say cringe ya sharmati ho 
+
+You close your one eye wd ur one hand
+
+I love that expression as it feels likes an elegant girl sitting in front of me and looking like an angel
+
+I was hearing all the songs u were singing in the kitchen while making coffee and i think few dance moves as well but not sure as couldn’t see much
+
+I like to follow what u do
+
+Its not like i am dumb but i was to be dumb for you so you take care of me
+
+Really do not know if all these words do even matter or not for you but atleast i feel little fine when i write as at this time there is no power who can pull you away from me. I feel bit better as there no one with me who i can talk about you all the time , no one except myself.
+
+I wanted to forget you always and wanted to move ahead but each year it was a failure for me
+
+I know , i don’t have rights to ask will u be mine 
+
+And i know u r practical person but sometimes my emotion overshadows practicality 
+
+Well i dont know wt to say more
+
+Just repeated req dont leave me ever as u promised 
+
+You around me gives me feeling of love which i have not felt in this way 
+
+I always used to run away seeing you though i noticed you silently and my actions were not the sign of not loving but they were to safeguard my deep emotions which i could not express to anyone even you as i am tired of rejections , blames etc etc
+
+I never knew you will sit in my heart for so long without my knowledge and today you completely run thru me top to bottom
+
+Not even a second i can say i remain without you
+
+I want to feel you always with me around me
+
+Want to talk with you on any useless topics with you which even does not matter but this should be just you and me and i don’t want to let anyone else to be part of this conversation
+
+You speak less probably like me but hearing about myself from you make me feel like a king where his queen is owning this king ( which i am not ) but feeling that you own me itself give me sense of happiness love and many things
+
+Well i must stop now
+
+Tke cre chidiya ` },
+    ];
+  });
+
+  const [songs, setSongs] = useState(() => {
+    const saved = localStorage.getItem('treasure-songs');
+    return saved ? JSON.parse(saved) : [
+      { id: 1, title: "Our First Song", link: "https://www.youtube.com/watch?v=tcjA9mnAQw0" },
+      { id: 2, title: "Song you love", link: "https://www.youtube.com/watch?v=tvxXAZo1Hlg" },
+      { id: 3, title: "Perfect", link: "https://www.youtube.com/watch?v=HUzE9qQK2ao" },
+      { id: 4, title: "What I think about you", link: "https://www.youtube.com/watch?v=8zmby4K1rw4" },
+      { id: 5, title: "Poerty for you", link: "https://www.youtube.com/watch?v=jrOMtXMMXQE" },
+      { id: 6, title: "Can't Help Falling in Love", link: "https://www.youtube.com/watch?v=LV_wiOhO40Q" },
+    ];
+  });
+
+  // Persist to localStorage whenever state changes
+  useEffect(() => {
+    localStorage.setItem('treasure-items', JSON.stringify(items));
+  }, [items]);
+
+  useEffect(() => {
+    localStorage.setItem('treasure-letters', JSON.stringify(letters));
+  }, [letters]);
+
+  useEffect(() => {
+    localStorage.setItem('treasure-songs', JSON.stringify(songs));
+  }, [songs]);
+
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedLetter, setSelectedLetter] = useState(null);
   const [newSongTitle, setNewSongTitle] = useState("");
   const [newSongLink, setNewSongLink] = useState("");
 
@@ -1195,67 +1550,58 @@ const TreasureBoxChapter = () => {
             <p className="text-brand-600 italic">"The melodies that tell our story."</p>
           </div>
 
-          <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-rose-50 mb-12">
-            <form onSubmit={handleAddSong} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input 
-                  type="text" 
-                  placeholder="Song Title" 
-                  value={newSongTitle}
-                  onChange={(e) => setNewSongTitle(e.target.value)}
-                  className="px-6 py-4 rounded-2xl bg-rose-50 border-none focus:ring-2 focus:ring-rose-200 outline-none font-medium"
-                />
-                <input 
-                  type="url" 
-                  placeholder="YouTube Link" 
-                  value={newSongLink}
-                  onChange={(e) => setNewSongLink(e.target.value)}
-                  className="px-6 py-4 rounded-2xl bg-rose-50 border-none focus:ring-2 focus:ring-rose-200 outline-none font-medium"
-                />
-              </div>
-              <button 
-                type="submit"
-                className="w-full bg-brand-900 text-white py-4 rounded-2xl font-bold shadow-lg hover:bg-brand-800 transition-all flex items-center justify-center gap-2"
-              >
-                <Plus size={24} />
-                Add to Playlist
-              </button>
-            </form>
-          </div>
-
           <div className="space-y-4">
             <AnimatePresence>
-              {songs.map((song) => (
+              {songs.map((song, index) => (
                 <motion.div
                   key={song.id}
                   layout
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9 }}
-                  className="bg-white p-6 rounded-3xl shadow-md border border-rose-50 flex items-center justify-between group"
+                  className="bg-white p-6 rounded-3xl shadow-md border border-rose-50 flex flex-col md:flex-row items-center justify-between gap-6 group"
                 >
-                  <div className="flex items-center gap-6">
-                    <div className="w-16 h-16 bg-rose-100 rounded-2xl flex items-center justify-center text-rose-500">
+                  <div className="flex items-center gap-6 w-full">
+                    <div className="w-16 h-16 bg-rose-100 rounded-2xl flex items-center justify-center text-rose-500 shrink-0">
                       <Music size={32} />
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-brand-900">{song.title}</h3>
-                      <a 
-                        href={song.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-rose-400 text-sm hover:underline flex items-center gap-1 mt-1"
-                      >
-                        Listen on YouTube <ArrowRight size={12} />
-                      </a>
+                    <div className="flex-1 space-y-2">
+                      <div className="flex flex-col md:flex-row gap-4">
+                        <input 
+                          type="text" 
+                          placeholder="Song Title" 
+                          value={song.title}
+                          onChange={(e) => {
+                            const newSongs = [...songs];
+                            newSongs[index].title = e.target.value;
+                            setSongs(newSongs);
+                          }}
+                          className="flex-1 px-4 py-2 rounded-xl bg-rose-50 border-none focus:ring-2 focus:ring-rose-200 outline-none font-medium text-brand-900"
+                        />
+                        <input 
+                          type="url" 
+                          placeholder="YouTube URL" 
+                          value={song.link}
+                          onChange={(e) => {
+                            const newSongs = [...songs];
+                            newSongs[index].link = e.target.value;
+                            setSongs(newSongs);
+                          }}
+                          className="flex-[2] px-4 py-2 rounded-xl bg-rose-50 border-none focus:ring-2 focus:ring-rose-200 outline-none font-medium text-brand-900"
+                        />
+                      </div>
+                      {song.link && (
+                        <a 
+                          href={song.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-rose-400 text-sm hover:underline flex items-center gap-1 mt-1"
+                        >
+                          Listen on YouTube <ArrowRight size={12} />
+                        </a>
+                      )}
                     </div>
                   </div>
-                  <button 
-                    onClick={() => removeSong(song.id)}
-                    className="p-3 text-rose-300 hover:text-rose-600 transition-colors"
-                  >
-                    <Trash2 size={24} />
-                  </button>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -1286,44 +1632,86 @@ const TreasureBoxChapter = () => {
           <div className="text-center mb-12">
             <h2 className="text-4xl font-serif font-bold text-brand-900 mb-4">Handwritten Letters</h2>
             <p className="text-brand-600 italic">"Every word we ever wrote, kept safe."</p>
-          </div>
-
-          <div className="flex justify-center mb-12">
-            <label className="cursor-pointer">
-              <input type="file" accept="image/*" className="hidden" onChange={handleLetterUpload} />
-              <div className="bg-brand-900 text-white px-10 py-4 rounded-2xl flex items-center gap-3 shadow-xl hover:bg-brand-800 transition-all active:scale-95">
-                <Upload size={24} />
-                <span className="font-bold tracking-wide">Upload Letter</span>
-              </div>
-            </label>
+            <p className="text-rose-400 text-sm mt-2 font-medium animate-pulse italic">Click any letter to read it in full ✨</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <AnimatePresence>
-              {letters.map((letter) => (
+              {letters.map((letter, index) => (
                 <motion.div
                   key={letter.id}
                   layout
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
-                  className="bg-white p-4 rounded-[2rem] shadow-xl border border-rose-50 group relative"
+                  whileHover={{ scale: 1.02, rotate: index % 2 === 0 ? 1 : -1 }}
+                  onClick={() => setSelectedLetter(letter)}
+                  className="bg-[#FFF9E6] p-8 rounded-[1rem] shadow-xl border-t-[30px] border-[#F3E5AB] relative group cursor-pointer overflow-hidden max-h-[350px]"
                 >
-                  <button 
-                    onClick={() => removeLetter(letter.id)}
-                    className="absolute top-6 right-6 z-20 p-2 bg-white/80 backdrop-blur-sm rounded-full text-rose-500 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-rose-50"
-                  >
-                    <Trash2 size={18} />
-                  </button>
-                  <div className="aspect-[3/4] rounded-[1.5rem] overflow-hidden mb-4 border border-rose-50">
-                    <img src={letter.url} className="w-full h-full object-cover" alt="Handwritten Letter" />
+                  <div className="space-y-4 pointer-events-none">
+                    <h3 className="text-xl font-serif font-bold text-brand-900 line-clamp-1">{letter.title}</h3>
+                    <p className="text-stone-700 italic leading-relaxed line-clamp-6 whitespace-pre-wrap">
+                      {letter.content}
+                    </p>
                   </div>
-                  <p className="text-stone-600 italic text-center text-sm px-4">"{letter.caption}"</p>
+                  
+                  {/* Decorative Line Effect */}
+                  <div className="absolute inset-0 pointer-events-none opacity-[0.05] bg-[repeating-linear-gradient(transparent,transparent_31px,#000_31px,#000_32px)]" />
+                  
+                  <div className="absolute bottom-4 right-8">
+                    <span className="text-rose-400 text-xs font-bold uppercase tracking-widest flex items-center gap-1 group-hover:underline">
+                      Read Full <ArrowRight size={10} />
+                    </span>
+                  </div>
                 </motion.div>
               ))}
             </AnimatePresence>
           </div>
         </div>
+
+        {/* Modal for full letter view */}
+        <AnimatePresence>
+          {selectedLetter && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-brand-900/60 backdrop-blur-md"
+              onClick={() => setSelectedLetter(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.9, y: 50, opacity: 0 }}
+                animate={{ scale: 1, y: 0, opacity: 1 }}
+                exit={{ scale: 0.9, y: 50, opacity: 0 }}
+                className="bg-[#FFF9E6] w-full max-w-2xl max-h-[85vh] rounded-[1.5rem] shadow-2xl border-t-[40px] border-[#F3E5AB] relative overflow-hidden flex flex-col"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button 
+                  onClick={() => setSelectedLetter(null)}
+                  className="absolute -top-10 right-4 p-2 text-brand-900 hover:scale-110 transition-transform"
+                >
+                  <X size={28} />
+                </button>
+
+                <div className="p-8 md:p-12 overflow-y-auto custom-scrollbar flex-1 relative">
+                  <div className="space-y-6 relative z-10">
+                    <h3 className="text-3xl font-serif font-bold text-brand-900 border-b-2 border-brand-100 pb-4">{selectedLetter.title}</h3>
+                    <p className="text-stone-700 italic leading-loose text-lg md:text-xl whitespace-pre-wrap font-serif">
+                      {selectedLetter.content}
+                    </p>
+                  </div>
+                  
+                  {/* Decorative Line Effect inside modal */}
+                  <div className="absolute inset-0 pointer-events-none opacity-[0.05] bg-[repeating-linear-gradient(transparent,transparent_40px,#000_40px,#000_41px)]" />
+                </div>
+
+                <div className="bg-[#F3E5AB]/30 p-6 text-center border-t border-brand-100">
+                  <span className="text-stone-500 text-sm font-serif uppercase tracking-[0.3em] italic">Handwritten with love forever</span>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     );
   }
@@ -1459,8 +1847,8 @@ const TreasureBoxChapter = () => {
                   ))}
                 </div>
               ) : (
-                <div className="w-full h-48 rounded-2xl bg-white/40 border-2 border-dashed border-brand-200 flex items-center justify-center text-brand-300 font-bold uppercase text-xs tracking-widest">
-                  Gallery Coming Soon
+                <div className="w-full h-48 rounded-2xl bg-white/40 border-2 border-dashed border-brand-200 flex items-center justify-center text-brand-500 font-bold uppercase text-xs tracking-widest px-4 text-center italic">
+                  "Click to uncover the magic of our journey together..."
                 </div>
               )}
             </motion.div>
@@ -1534,20 +1922,23 @@ const HeroSection = () => {
 function AnimatedRoutes() {
   const location = useLocation();
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<StoryRecap />} />
-        <Route path="/welcome" element={<HeroSection />} />
-        <Route path="/chapter1-intro" element={<ChildhoodChapterIntro />} />
-        <Route path="/chapter1" element={<ChildhoodChapter />} />
-        <Route path="/chapter2" element={<ReconnectionChapter />} />
-        <Route path="/chapter3" element={<DistanceChapter />} />
-        <Route path="/chapter4" element={<ReunionChapter />} />
-        <Route path="/chapter5" element={<GodsPlanChapter />} />
-        <Route path="/treasure-box" element={<TreasureBoxChapter />} />
-        <Route path="/recap" element={<StoryRecap />} />
-      </Routes>
-    </AnimatePresence>
+    <>
+      <ScrollToTop />
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<StoryRecap />} />
+          <Route path="/welcome" element={<HeroSection />} />
+          <Route path="/chapter1-intro" element={<ChildhoodChapterIntro />} />
+          <Route path="/chapter1" element={<ChildhoodChapter />} />
+          <Route path="/chapter2" element={<ReconnectionChapter />} />
+          <Route path="/chapter3" element={<DistanceChapter />} />
+          <Route path="/chapter4" element={<ReunionChapter />} />
+          <Route path="/chapter5" element={<GodsPlanChapter />} />
+          <Route path="/treasure-box" element={<TreasureBoxChapter />} />
+          <Route path="/recap" element={<StoryRecap />} />
+        </Routes>
+      </AnimatePresence>
+    </>
   );
 }
 
