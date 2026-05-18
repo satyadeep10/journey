@@ -1118,12 +1118,12 @@ const TreasureBoxChapter = () => {
   const [items, setItems] = useState(() => {
     const saved = localStorage.getItem('treasure-items');
     return saved ? JSON.parse(saved) : [
-      { id: 1, type: 'image', url: '/pic1.jpg', caption: "A memory that will last forever." },
-      { id: 2, type: 'image', url: '/pic2.jpg', caption: "The sparkle in your eyes." },
-      { id: 3, type: 'image', url: '/pic3.jpg', caption: "Our favorite place to be." },
-      { id: 4, type: 'image', url: '/pic4.jpg', caption: "A moment of pure happiness." },
-      { id: 5, type: 'image', url: '/pic5.jpg', caption: "Forever in my heart." },
-      { id: 6, type: 'image', url: '/pic6.jpg', caption: "The beauty of us." },
+      { id: 1, type: 'image', url: '/pic1.JPG', caption: "That radiant smile that brightens my darkest days." },
+      { id: 2, type: 'image', url: '/pic2.JPG', caption: "Elegant in wine, but it's your eyes that truly shine." },
+      { id: 3, type: 'image', url: '/pic3.JPG', caption: "A vision of pure grace and beauty." },
+      { id: 4, type: 'image', url: '/pic4.JPG', caption: "Even in pink, you are the most beautiful person I've ever seen." },
+      { id: 5, type: 'image', url: '/pic5.JPG', caption: "My favorite view will always be you." },
+      { id: 6, type: 'image', url: '/pic6.JPG', caption: "Looking forward to a lifetime of beautiful moments with you." },
     ];
   });
 
