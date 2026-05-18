@@ -1116,7 +1116,7 @@ const TreasureBoxChapter = () => {
   
   // Load saved data from localStorage or use defaults
   const [items, setItems] = useState(() => {
-    const saved = localStorage.getItem('treasure-items');
+    const saved = localStorage.getItem('treasure-items-v2');
     return saved ? JSON.parse(saved) : [
       { id: 1, type: 'image', url: '/pic1.JPG', caption: "That radiant smile that brightens my darkest days." },
       { id: 2, type: 'image', url: '/pic2.JPG', caption: "Elegant in wine, but it's your eyes that truly shine." },
@@ -1128,7 +1128,7 @@ const TreasureBoxChapter = () => {
   });
 
   const [letters, setLetters] = useState(() => {
-    const saved = localStorage.getItem('treasure-letters');
+    const saved = localStorage.getItem('treasure-letters-v2');
     return saved ? JSON.parse(saved) : [
       { id: 1, title: "Note by you", content: `I honestly don’t even know where to begin. You know what happens? I spend the entire day thinking about when i’ll get a chance to talk to you…what I’ll say to you, what I’ll ask, what I’ll share…but the moment I actually talk to you or text you, I forget everything. All I want to do is listen to you. I just want to hear about you, know what you’re thinking, what you’re feeling, how was your day..I don’t even feel like talking about myself. Sirf apki hi baat krna chahti hu…
 
@@ -1450,7 +1450,7 @@ Tke cre chidiya ` },
   });
 
   const [songs, setSongs] = useState(() => {
-    const saved = localStorage.getItem('treasure-songs');
+    const saved = localStorage.getItem('treasure-songs-v2');
     return saved ? JSON.parse(saved) : [
       { id: 1, title: "Our First Song", link: "https://www.youtube.com/watch?v=tcjA9mnAQw0" },
       { id: 2, title: "Song you love", link: "https://www.youtube.com/watch?v=tvxXAZo1Hlg" },
@@ -1463,15 +1463,15 @@ Tke cre chidiya ` },
 
   // Persist to localStorage whenever state changes
   useEffect(() => {
-    localStorage.setItem('treasure-items', JSON.stringify(items));
+    localStorage.setItem('treasure-items-v2', JSON.stringify(items));
   }, [items]);
 
   useEffect(() => {
-    localStorage.setItem('treasure-letters', JSON.stringify(letters));
+    localStorage.setItem('treasure-letters-v2', JSON.stringify(letters));
   }, [letters]);
 
   useEffect(() => {
-    localStorage.setItem('treasure-songs', JSON.stringify(songs));
+    localStorage.setItem('treasure-songs-v2', JSON.stringify(songs));
   }, [songs]);
 
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -1808,7 +1808,7 @@ Tke cre chidiya ` },
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {[
             { id: 'letters', icon: Mail, title: "Handwritten Letters", desc: `${letters.length} letters preserved. Click to view or add more.`, color: "bg-blue-50" },
             { id: 'songs', icon: Music, title: "Audio Cassettes", desc: `${songs.length} songs in our playlist. Click to listen or add more.`, color: "bg-purple-50" },
@@ -1853,6 +1853,24 @@ Tke cre chidiya ` },
               )}
             </motion.div>
           ))}
+        </div>
+        
+        {/* Reset Button */}
+        <div className="flex justify-center mt-12 pb-12">
+          <button
+            onClick={() => {
+              if (window.confirm("This will reset all photos, letters, and songs to their original versions. Are you sure?")) {
+                localStorage.removeItem('treasure-items-v2');
+                localStorage.removeItem('treasure-letters-v2');
+                localStorage.removeItem('treasure-songs-v2');
+                window.location.reload();
+              }
+            }}
+            className="text-brand-300 hover:text-rose-400 text-xs font-serif italic flex items-center gap-2 transition-colors opacity-50 hover:opacity-100"
+          >
+            <Sparkles size={12} />
+            Reset Treasure Box to Original State
+          </button>
         </div>
       </div>
     </motion.div>
